@@ -1,0 +1,25 @@
+﻿@using Blog.WebApp.Models
+@model IEnumerable<Blog.WebApp.Models.Post>
+           
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    @foreach (Post post in Model)
+    {
+        <a href="#@post.Id"></a>
+        <h1>@post.Titulo</h1>
+        <div>@post.Corpo</div>
+        <p>Postado por @post.Autor em @post.Data.ToShortDateString()</p>
+        <div class="comment">
+            @using (Html.BeginForm("Create", "Comments"))
+            {
+                <p>Autor: @Html.TextBox("Author")</p>
+                <p>Comentário: @Html.TextArea("Body")</p>
+                <input type="submit" value="Comentar"/>
+            }
+        </div>
+        
+    }
+</div>
